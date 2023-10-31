@@ -175,7 +175,7 @@ class Llama:
         # 设置y轴的范围
         y_time_length = [0,150]
         y_tps_length=[0,16]
-        y_wps_length=[0,40]
+        y_wps_length=[0,50]
 
         # 创建图像
         fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(15, 5))
