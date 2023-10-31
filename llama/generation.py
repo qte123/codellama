@@ -395,7 +395,7 @@ class Llama:
             prev_pos = cur_pos
             if all(stop_reached):
                 break
-        self.create_plot(outputs,1000,'code-exllama-13B')
+        self.create_plot(outputs,1000,'code-exllama-13B',is_gpu=True)
         if logprobs:
             token_logprobs = token_logprobs.tolist()
         out_tokens, out_logprobs = [], []
