@@ -174,9 +174,10 @@ class Llama:
         x_length = [min_token_length, max_token]
         # 设置y轴的范围
         y_time_length = [0,150]
-        y_tps_length=[0,16]
+        y_tps_length=[0,30]
         y_wps_length=[0,50]
-
+        #表格的行高
+        row_height = 0.3
         # 创建图像
         fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(15, 5))
         # 指定需要标注的 x 坐标
@@ -219,13 +220,14 @@ class Llama:
             ha="center",
         )
         
-        # 显示表格数据 1
-        cell_text1 = []
-        for row in range(len(df1)):
-            rounded_values = df1.iloc[row].round(2)  # 对每一行数据四舍五入保留两位小数
-            cell_text1.append(rounded_values.values)
-        ax1.table(cellText=cell_text1, colLabels=df1.columns, cellLoc='center', loc='bottom', bbox=[0, -0.55, 1, 0.3])
+        # # 显示表格数据 1
+        # cell_text1 = []
+        # for row in range(len(df1)):
+        #     rounded_values = df1.iloc[row].round(2)  # 对每一行数据四舍五入保留两位小数
+        #     cell_text1.append(rounded_values.values)
+        # table1=ax1.table(cellText=cell_text1, colLabels=df1.columns, cellLoc='center', loc='bottom', bbox=[0, -0.55, 1, 0.3])
         
+        # table1.set_row_heights([row_height] * len(data1))
         ax1.scatter(token_length.iloc[-1], spend_times.iloc[-1], color="black")
         ax1.set_xlabel("Token Length")
         ax1.set_ylabel("Spend Time")
@@ -264,13 +266,13 @@ class Llama:
         ha="center",
         )
         
-        # 显示表格数据 2
-        cell_text2 = []
-        for row in range(len(df2)):
-            rounded_values = df2.iloc[row].round(2)  # 对每一行数据四舍五入保留两位小数
-            cell_text2.append(rounded_values.values)
-        ax2.table(cellText=cell_text2, colLabels=df2.columns, cellLoc='center', loc='bottom', bbox=[0, -0.55, 1, 0.3])
-
+        # # 显示表格数据 2
+        # cell_text2 = []
+        # for row in range(len(df2)):
+        #     rounded_values = df2.iloc[row].round(2)  # 对每一行数据四舍五入保留两位小数
+        #     cell_text2.append(rounded_values.values)
+        # table2=ax2.table(cellText=cell_text2, colLabels=df2.columns, cellLoc='center', loc='bottom', bbox=[0, -0.55, 1, 0.3])
+        # table2.set_row_heights([row_height] * len(data2))
         ax2.scatter(token_length.iloc[-1], token_per_second.iloc[-1], color="black")
         ax2.set_xlabel("Token Length")
         ax2.set_ylabel("Token per second (TPS)")
@@ -310,13 +312,14 @@ class Llama:
         ha="center",
         )
 
-        # 显示表格数据 3
-        cell_text3 = []
-        for row in range(len(df3)):
-            rounded_values = df3.iloc[row].round(2)  # 对每一行数据四舍五入保留两位小数
-            cell_text3.append(rounded_values.values)
-        ax3.table(cellText=cell_text3, colLabels=df3.columns, cellLoc='center', loc='bottom', bbox=[0, -0.55, 1, 0.3])
-
+        # # 显示表格数据 3
+        # cell_text3 = []
+        # for row in range(len(df3)):
+        #     rounded_values = df3.iloc[row].round(2)  # 对每一行数据四舍五入保留两位小数
+        #     cell_text3.append(rounded_values.values)
+        # table3=ax3.table(cellText=cell_text3, colLabels=df3.columns, cellLoc='center', loc='bottom', bbox=[0, -0.55, 1, 0.3])
+        # 设置单元格高度
+        # table3.set_row_heights([row_height] * len(data3))
         ax3.scatter(token_length.iloc[-1], word_per_second.iloc[-1], color="black")
         ax3.set_xlabel("Token Length")
         ax3.set_ylabel("Word per second (WPS)")
