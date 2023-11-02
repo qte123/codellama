@@ -351,7 +351,7 @@ class Llama:
         # 生成带有时间戳的文件名
         png_filename = f"{name}_{filename}_gpus{num_gpus}.png"
         png_filepath = os.path.join(data_folder_plt, png_filename)
-        plt.tight_layout()
+        # plt.tight_layout()
         # 保存 PNG 文件
         plt.savefig(png_filepath)
         # 关闭图形
