@@ -237,7 +237,7 @@ class Llama:
         ax1.set_xlim(x_length)
         # 设置 x 轴刻度的间隔
         ax1.set_xticks(x_ticks)
-        ax1.set_ylim(y_time_length)
+        # ax1.set_ylim(y_time_length)
 
         # 绘制 "token_efficiency" 的曲线图
         ax2.plot(token_length, token_per_second, marker="", linestyle="-", color="r")
@@ -282,7 +282,7 @@ class Llama:
         ax2.set_xlim(x_length)
         # 设置 x 轴刻度的间隔
         ax2.set_xticks(x_ticks)
-        ax2.set_ylim(y_tps_length)
+        # ax2.set_ylim(y_tps_length)
 
         # 绘制 "token_aver_efficiency" 的曲线图
         ax3.plot(token_length, word_per_second, marker="", linestyle="-", color="g")
@@ -329,7 +329,7 @@ class Llama:
         ax3.set_xlim(x_length)
         # 设置 x 轴刻度的间隔
         ax3.set_xticks(x_ticks)
-        ax3.set_ylim(y_wps_length)
+        # ax3.set_ylim(y_wps_length)
         
 
         plt.subplots_adjust(wspace=0.4)
@@ -444,7 +444,11 @@ class Llama:
             prev_pos = cur_pos
             if all(stop_reached):
                 break
-        self.create_plot(outputs,1000,'code-exllama-13B',is_gpu=True)
+        num_gpus = torch.cuda.device_count()
+        if num_gpus > 0:
+            self.create_plot(outputs,1000,'CodeLlama-13b-Python',is_gpu=True)
+        else:
+            self.create_plot(outputs,1000,'CodeLlama-13b-Python',is_gpu=False)
         if logprobs:
             token_logprobs = token_logprobs.tolist()
         out_tokens, out_logprobs = [], []
